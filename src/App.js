@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
-
 const wineData = [
   {
     Alcohol: 14.23,
