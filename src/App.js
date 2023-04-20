@@ -13,7 +13,7 @@ const BarGraphArray = Object.values(
 );
 
 const LineChartData = filterData.map((item,idx) => {
-  return [item.Flavanoids,item.Ash];
+  return [idx,item.Ash];
 });
 
 console.log("LineChart", LineChartData);
@@ -22,7 +22,7 @@ const lineChartOptions = {
   xAxis: {
     type: "value",
     name: "Flavanoids",
-    interval: 0.1,
+    interval: 5,
   },
   yAxis: {
     type: "value",
