@@ -4,9 +4,16 @@ This is a simple example of a TypeScript file that defines a string variable, an
 <!-- Installation -->
 To install the project, follow these steps:
 
-Clone the repository: git clone https://github.com/example/typescript-example.git
-Navigate to the project directory: cd typescript-example
+Clone the repository: git clone https://github.com/JayeshMalviya5/manufacanalytics.git
 Install the dependencies: yarn install
+
+<!-- To run the build -->
+yarn build
+
+<!-- To Start the project -->
+yarn start
+
+
 
 ![alt text](/Graph.png)
 
