@@ -14,4 +14,4 @@
    yarn start
 
 <!--  -->
-![alt text](/Graph.png)
+![alt text](/Result.png)
