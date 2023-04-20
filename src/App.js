@@ -1,39 +1,14 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
-
+import { filterData } from "./WindDataSet";
 // filtred data
-const wineData = [
-  {
-    Alcohol: 14.23,
-    Flavanoids: 3.06,
-    Ash: 2.43,
-    Magnesium: 127,
-  },
-  {
-    Alcohol: 13.2,
-    Flavanoids: 2.76,
-    Ash: 2.14,
-    Magnesium: 100,
-  },
-  {
-    Alcohol: 13.16,
-    Flavanoids: 3.24,
-    Ash: 2.67,
-    Magnesium: 101,
-  },
-  {
-    Alcohol: 14.37,
-    Flavanoids: 3.49,
-    Ash: 2.5,
-    Magnesium: 128,
-  },
-  {
-    Alcohol: 13.24,
-    Flavanoids: 2.69,
-    Ash: 2.87,
-    Magnesium: 112,
-  },
-];
+
+const BarGraphArray = Object.values(filterData.reduce((acc, obj) => {
+  if (!acc[obj.Alcohol] || obj.Magnesium < acc[obj.Alcohol].Magnesium) {
+    acc[obj.Alcohol] = {Alcohol: obj.Alcohol, Magnesium: obj.Magnesium};
+  }
+  return acc;
+}, {}));
 
 const lineChartOptions = {
   xAxis: {
@@ -47,7 +22,7 @@ const lineChartOptions = {
   series: [
     {
       type: "line",
-      data: wineData.map((dataPoint) => [dataPoint.Flavanoids, dataPoint.Ash]),
+      data: filterData.map((dataPoint) => [dataPoint.Flavanoids, dataPoint.Ash]),
     },
   ],
 };
@@ -55,7 +30,7 @@ const lineChartOptions = {
 const barChartOptions = {
   xAxis: {
     type: "category",
-    data: wineData.map((dataPoint) => dataPoint.Alcohol),
+    data: BarGraphArray.map((dataPoint) => dataPoint.Alcohol),
     name: "Alcohol",
   },
   yAxis: {
@@ -65,7 +40,7 @@ const barChartOptions = {
   series: [
     {
       type: "bar",
-      data: wineData.map((dataPoint) => dataPoint.Magnesium),
+      data: BarGraphArray.map((dataPoint) => dataPoint.Magnesium),
     },
   ],
 };
