@@ -3,17 +3,26 @@ import ReactEcharts from "echarts-for-react";
 import { filterData } from "./WindDataSet";
 // filtred data
 
-const BarGraphArray = Object.values(filterData.reduce((acc, obj) => {
-  if (!acc[obj.Alcohol] || obj.Magnesium < acc[obj.Alcohol].Magnesium) {
-    acc[obj.Alcohol] = {Alcohol: obj.Alcohol, Magnesium: obj.Magnesium};
-  }
-  return acc;
-}, {}));
+const BarGraphArray = Object.values(
+  filterData.reduce((acc, obj) => {
+    if (!acc[obj.Alcohol] || obj.Magnesium < acc[obj.Alcohol].Magnesium) {
+      acc[obj.Alcohol] = { Alcohol: obj.Alcohol, Magnesium: obj.Magnesium };
+    }
+    return acc;
+  }, {})
+);
+
+const LineChartData = filterData.map((item,idx) => {
+  return [item.Flavanoids,item.Ash];
+});
+
+console.log("LineChart", LineChartData);
 
 const lineChartOptions = {
   xAxis: {
     type: "value",
     name: "Flavanoids",
+    interval: 0.1,
   },
   yAxis: {
     type: "value",
@@ -22,7 +31,7 @@ const lineChartOptions = {
   series: [
     {
       type: "line",
-      data: filterData.map((dataPoint) => [dataPoint.Flavanoids, dataPoint.Ash]),
+      data: LineChartData,
     },
   ],
 };
